@@ -10,7 +10,12 @@ const UsersCount = () => {
             setUsersCount(documents);
         };
 
-        fetchUsersCount();
+        // fetchUsersCount();
+        const interval = setInterval(() => {
+            fetchUsersCount();
+        }, 30000); // intervalo de 1 minuto em milissegundos
+        // retornar uma função de limpeza para parar a execução do setInterval quando o componente é desmontado
+        return () => clearInterval(interval);
     }, []);
 
     return (

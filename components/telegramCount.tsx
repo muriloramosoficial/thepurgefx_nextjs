@@ -13,8 +13,8 @@ const TelegramCount = () => {
         // obterNumeroDeInscritos();
         const interval = setInterval(() => {
             obterNumeroDeInscritos();
-        }, 30000); // intervalo de 1 minuto em milissegundos
-        // retornar uma função de limpeza para parar a execução do setInterval quando o componente é desmontado
+        }, 10000); 
+        
         return () => clearInterval(interval);
     }, []);
 

@@ -13,7 +13,7 @@ const DashboardContent = () => {
                 <div className="flex flex-col justify-center w-full">
                     <div className="flex flex-col justify-end items-end align-middle" id="group">
                         <div id="result"><span className="text-2xl font-bold text-green-500">512</span></div>
-                        <div id="title"><span className="text-sm font-semibold text-slate-400">Totaaaaal Users</span></div>
+                        <div id="title"><span className="text-sm font-semibold text-slate-400">Total Users</span></div>
                     </div>
                 </div>
             </div>

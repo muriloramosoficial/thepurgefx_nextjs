@@ -52,38 +52,22 @@ export default function NewUserForm() {
     }
   }, [isRegister]);
 
-  useEffect(() => {
-    if (isRegError) {
-      const intervalId = setInterval(() => {
-        setCounter((prevCounter) => prevCounter - 1);
-      }, 1000);
-
-      setTimeout(() => {
-        clearInterval(intervalId);
-        setIsRegister(false);
-        setCounter(10);
-      }, 10000);
-    }
-  }, [isRegError]);
-
   return (
     <>  
-        {isLoading ? 
-            <div className={isRegister ? 'flex flex-row justify-between items-center w-full bg-green-600 text-green-200 text-lg font-bold p-5 rounded-md mb-5' : 'hidden'} id='alertMessage'>
+       <div className={isRegister ? 'flex flex-row justify-between items-center w-full bg-green-600 text-green-200 text-lg font-bold p-5 rounded-md mb-5' : 'hidden'} id='alertMessage'>
             <h1>Successfully registered user on the platform!</h1>
             <div className='flex flex-row items-center text-sm text-green-400 font-semibold'>
                 <p className='mr-5'>{counter}</p>
                 <CloseIcon color='text-slate-400' width='w-3' height='h-3'/>
             </div>
-          </div> :
+          </div>
           <div className={isRegError ? 'flex flex-row justify-between items-center w-full bg-red-600 text-red-200 text-lg font-bold p-5 rounded-md mb-5' : 'hidden'} id='alertMessage'>
-          <h1>Successfully registered user on the platform!</h1>
+          <h1>Failed to register user on the platform. Please try again!</h1>
           <div className='flex flex-row items-center text-sm text-red-400 font-semibold'>
               <p className='mr-5'>{counter}</p>
               <CloseIcon color='text-slate-400' width='w-3' height='h-3'/>
           </div>
         </div>   
-        }
       {/* <div className={isRegister ? 'flex flex-row justify-between items-center w-full bg-green-600 text-green-200 text-lg font-bold p-5 rounded-md mb-5' : 'hidden'} id='alertMessage'>
         asdasdadasdas {counter}s
       </div> */}

@@ -11,13 +11,18 @@ import Signals from '@/icons/signals'
 import Help from '@/icons/help'
 import User from '@/icons/user'
 import Bell from '@/icons/bell'
+import PaymentsContent from '@/pages/payments'
+import SignalsContent from '@/pages/signals'
 
 const Dashboard = () => {
-  const [Active, setActive] = useState(true);
+  const [Active, setActive] = useState('dashboard');
 
-  function handleClick() {
-    setActive(!Active);
+  function handleClick(menuOption: any) {
+    setActive(menuOption);
   }
+  // function handleClick() {
+  //   setActive(!Active);
+  // }
 
   return (
     <div className='flex flex-row'>
@@ -27,10 +32,10 @@ const Dashboard = () => {
         </div>
         <div className='flex justify-center' id='leftMenuIcons'>
           <nav>
-            <a className='' href='#'><div className='w-6 h-6 text-slate-500 hover:text-slate-400'><HomeIcon /></div></a>
-            <a className='' href='#'><div className='mt-7 w-6 h-6 text-slate-500 hover:text-slate-400'><Signals /></div></a>
-            <a className='' href='#'><div className='mt-7 w-6 h-6 hover:text-slate-400'><Users color='text-slate-500' width='w-6' height='h-6' /></div></a>
-            <a className='' href='#'><div className='mt-7 w-6 h-6 text-slate-500 hover:text-slate-400'><Payments /></div></a>
+            <a className='' onClick={() => handleClick('dashboard')}><div className='w-6 h-6 text-slate-500 hover:text-slate-400'><HomeIcon /></div></a>
+            <a className='' onClick={() => handleClick('signals')}><div className='mt-7 w-6 h-6 text-slate-500 hover:text-slate-400'><Signals /></div></a>
+            <a className='' onClick={() => handleClick('users')}><div className='mt-7 w-6 h-6 hover:text-slate-400'><Users color='text-slate-500' width='w-6' height='h-6' /></div></a>
+            <a className='' onClick={() => handleClick('payments')}><div className='mt-7 w-6 h-6 text-slate-500 hover:text-slate-400'><Payments /></div></a>
             <a className='' href='#'><div className='mt-7 w-6 h-6 text-slate-500 hover:text-slate-400'><Help /></div></a>
           </nav>
         </div>
@@ -53,7 +58,12 @@ const Dashboard = () => {
           </div>
         </div>
         <div className='p-5' id='rightContent' style={{ height: 'calc(100vh - 90px)', overflowY: 'scroll', overflowX: 'hidden' }}>
-          {Active ? <DashboardContent /> : <UsersContent />}
+          {/* {Active === 'dashboard' ? <DashboardContent /> : <UsersContent />} */}
+          {Active === 'dashboard' ? <DashboardContent /> :
+            Active === 'users' ? <UsersContent /> :
+              Active === 'payments' ? <PaymentsContent /> :
+                Active === 'signals' ? <SignalsContent /> : <DashboardContent />
+          }
         </div>
       </div>
     </div>

@@ -32,3 +32,7 @@ body {
   width: 0px;
   background: transparent;
 }
+
+.inputrighticon{
+  margin-left: -20px;
+}

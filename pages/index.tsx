@@ -1,12 +1,14 @@
 import Dashboard from "@/components/dashboard";
+import LoginPage from "./login";
 
 export default function Home() {
 
   return (
     <>
-      <div className="">
+      {/* <div className="">
         <Dashboard />
-      </div>
+      </div> */}
+      <LoginPage/>
     </>
   )
 }

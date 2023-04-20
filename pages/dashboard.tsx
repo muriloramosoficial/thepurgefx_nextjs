@@ -1,4 +1,4 @@
-import Card from "@/components/card";
+// import Card from "@/components/card";
 import TelegramCount from "@/components/telegramCount";
 import UsersCount from "@/components/usersCount";
 import Users from "@/icons/users";

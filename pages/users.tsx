@@ -1,6 +1,10 @@
+import NewUserForm from "@/components/create_user";
+
 const UsersContent = () => {
     return (
-        <h1>Users</h1>
+        <>
+            <NewUserForm/>
+        </>
     )
 }
 

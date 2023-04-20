@@ -5,7 +5,7 @@ const UsersCount = () => {
 
     useEffect(() => {
         const fetchUsersCount = async () => {
-            const response = await fetch('/api/users');
+            const response = await fetch('/api/users_count');
             const { documents } = await response.json();
             setUsersCount(documents);
         };

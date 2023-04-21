@@ -3,8 +3,8 @@ import LogoText from '@/icons/logo_name';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const RegisterPage = () => {
-    const isSmallScreen = useMediaQuery('(max-width: 375px)');
-    const isMediumScreen = useMediaQuery('(max-width: 685px)')
+    const isSmallScreen = useMediaQuery('(max-width: 675px)');
+    const isMediumScreen = useMediaQuery('(max-width: 675px)')
 
     if (isSmallScreen) {
         return (
@@ -15,8 +15,6 @@ const RegisterPage = () => {
                 </div>
             </div>
         );
-    } else if (isMediumScreen) {
-        return <h1> Tela Média</h1>
     } else {
         return <h1>Tela grande</h1>;
     }

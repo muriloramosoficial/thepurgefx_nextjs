@@ -20,6 +20,7 @@ body {
   color: rgb(var(--foreground-rgb));
   @apply w-full;
   @apply h-full;
+  @apply bg-slate-500;
   /* @apply min-w-[375px] */
 }
 
@@ -33,6 +34,6 @@ body {
   background: transparent;
 }
 
-.inputrighticon{
+.inputrighticon {
   margin-left: -20px;
 }

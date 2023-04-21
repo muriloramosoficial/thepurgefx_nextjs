@@ -8,10 +8,8 @@ export default function NewUserForm() {
   const [isRegister, setIsRegister] = useState(false);
   const [isRegError, setIsRegError] = useState(false);
   const [counter, setCounter] = useState(10);
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const [username, setUserame] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const now = new Date().toISOString();
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);
@@ -25,9 +23,9 @@ export default function NewUserForm() {
         username: data.username,
         email: data.email,
         password: data.password,
-        actived: true,
+        actived: false,
         balance: 0,
-        createdAt: '+108199-01-01T03:00:00.000+00:00',
+        createdAt: now,
       })
     });
     const result = await response.json();
@@ -39,6 +37,7 @@ export default function NewUserForm() {
     if (statusCode === 201) {
       console.log("Cadastro efetuado com sucesso");
       setIsRegister(true);
+      reset();
     } else {
       console.log("Erro ao efetuar o cadastro");
       setIsRegError(true)
@@ -63,7 +62,7 @@ export default function NewUserForm() {
     <div className='items-center justify-center p-10'>
 
       <div className="relative pl-1 pr-1 pb-3">
-        <input type="text" id="password" className="block text-center uppercase text-3xl mb-2 border-t-2 border-b-2 border-slate-600 p-2.5  w-full text-slate-200 bg-transparent border-0  appearance-none dark:text-white dark:border-slate-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder="REGISTER" disabled={true} />
+        <input type="text" id="password" className="block text-center uppercase text-2xl mb-2 border-t-2 border-b-2 border-slate-700 p-2.5 w-full text-slate-700 bg-transparent" placeholder="CREATE AN ACCOUNT" disabled={true} />
       </div>
 
       <div className={isRegister ? 'flex flex-row justify-between items-center bg-green-600 text-green-200 text-sm font-bold p-5 rounded-md mb-5' : 'hidden'} id='alertMessage'>
@@ -87,21 +86,21 @@ export default function NewUserForm() {
             <label htmlFor="username" className="absolute text-sm text-slate-300 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-3.5 peer-focus:text-slate-200 peer-focus:dark:text-slate-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">USERNAME</label>
             {errors.username && ''}
           </div>
-          <input tabIndex={1} type="text" id="username" className="block lowercase rounded-lg px-4 pb-2.5 pt-5 w-full text-sm text-slate-200 bg-slate-600 dark:bg-gray-700 border-0 border-gray-300 appearance-none dark:text-white dark:border-slate-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " {...register("username", { required: true })} />
+          <input tabIndex={1} maxLength={20} type="text" id="username" className="block lowercase rounded-lg px-4 pb-2.5 pt-5 w-full text-sm text-slate-200 bg-slate-600 dark:bg-gray-700 border-0 border-gray-300 appearance-none dark:text-white dark:border-slate-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " {...register("username", { required: true })} />
         </div>
         <div className="relative mt-5">
           <label htmlFor="email" className="absolute text-sm text-slate-300 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-3.5 peer-focus:text-slate-200 peer-focus:dark:text-slate-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">EMAIL ADDRESS</label>
-          <input tabIndex={2} type="text" id="email" className="block lowercase rounded-lg px-4 pb-2.5 pt-5 w-full text-sm text-slate-200 bg-slate-600 dark:bg-gray-700 border-0 border-gray-300 appearance-none dark:text-white dark:border-slate-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " {...register("email", { required: true })} />
+          <input tabIndex={2} maxLength={20} type="email" id="email" className="block lowercase rounded-lg px-4 pb-2.5 pt-5 w-full text-sm text-slate-200 bg-slate-600 dark:bg-gray-700 border-0 border-gray-300 appearance-none dark:text-white dark:border-slate-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " {...register("email", { required: true })} />
           {errors.email && <p className='text-xs text-red-700 uppercase'><span className='text-xs text-red-700 font-bold uppercase'>email</span> is required!</p>}
         </div>
         <div className="relative mt-5">
           <label htmlFor="password" className="absolute text-sm text-slate-300 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-3.5 peer-focus:text-slate-200 peer-focus:dark:text-slate-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">PASSWORD</label>
-          <input tabIndex={3} type="password" id="password" className="block lowercase rounded-lg px-4 pb-2.5 pt-5 w-full text-sm text-slate-200 bg-slate-600 dark:bg-gray-700 border-0 border-gray-300 appearance-none dark:text-white dark:border-slate-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " {...register("password", { required: true })} />
+          <input tabIndex={3} minLength={10} maxLength={30} type="password" id="password" className="block lowercase rounded-lg px-4 pb-2.5 pt-5 w-full text-sm text-slate-200 bg-slate-600 dark:bg-gray-700 border-0 border-gray-300 appearance-none dark:text-white dark:border-slate-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " {...register("password", { required: true })} />
           {errors.password && <p className='text-xs text-red-700 uppercase'><span className='text-xs text-red-700 font-bold uppercase'>password</span> is required!</p>}
         </div>
         <div className='flex flex-row justify-center items-center mt-5'>
           <button className='flex justify-center items-center bg-slate-600 rounded-lg pb-3.5 pt-3.5 w-full text-sm text-slate-200 dark:bg-gray-700 border-0 border-gray-300 appearance-none dark:text-white dark:border-slate-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600' type="submit" disabled={isLoading}>
-            {isLoading ? <LoadIcon /> : 'REGISTRAR'}
+            {isLoading ? <LoadIcon /> : 'REGISTER'}
           </button>
         </div>
       </form>
